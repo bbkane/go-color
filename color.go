@@ -30,8 +30,8 @@ func setColors() {
 	White = "\033[97m"
 }
 
-// Ize wraps a given message in a given color.
+// Add wraps a given message in a given color.
 // Init must be called first
-func Ize(color, message string) string {
+func Add(color, message string) string {
 	return color + message + Reset
 }

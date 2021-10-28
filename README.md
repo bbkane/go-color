@@ -1,6 +1,6 @@
 # go-color
 
-Forked from [TwiN/go-color](https://github.com/TwiN/go-color). The main change is an explicit `Init()` function that "activates" `Ize()`. This allows calling code to determine whether or not colors are used. To keep the API surface small, I've also removed the `Colorize()` function in favor of `Ize()` Many thanks to @TwiN!!
+Forked from [TwiN/go-color](https://github.com/TwiN/go-color). The main change is an explicit `Init()` function that "activates" `Add()`. This allows calling code to determine whether or not colors are used. To keep the API surface small, I've also removed the `Colorize()` function in favor of `Add()` Many thanks to @TwiN!!
 
 An extremely lightweight cross-platform package to colorize text in terminals.
 
@@ -14,7 +14,7 @@ than a terminal (such as a file, i.e. `executable >> file.txt`)
 
 ### Function
 
-You can use the `color.Ize(color, message)` function
+You can use the `color.Add(color, message)` function
 in conjunction with a variable like so:
 ```go
 package main
@@ -23,7 +23,7 @@ import "github.com/TwiN/go-color"
 
 func main() {
     Init()
-    println(color.Ize(color.Red, "This is red"))
+    println(color.Add(color.Red, "This is red"))
 }
 ```
 
@@ -51,7 +51,7 @@ func main() {
 }
 ```
 
-**NOTE**: If you're going to use this approach, don't forget to prepend your string with `color.Reset`,
+**NOTE**: If you're going to use this approach, don't forget to append your string with `color.Reset`,
 otherwise everything else in your terminal will be that color until the color is reset or overridden.
 
 

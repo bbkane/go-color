@@ -1,35 +1,37 @@
-package color
+package color_test
 
 import (
 	"fmt"
 	"testing"
+
+	c "github.com/bbkane/go-color"
 )
 
 // Clearly not a real test - just a visual reference
 func TestOutput(t *testing.T) {
-	Init()
-	fmt.Println(Red + "Hello" + Reset)
-	fmt.Println(Green + "Hello" + Reset)
-	fmt.Println(Yellow + "Hello" + Reset)
-	fmt.Println(Blue + "Hello" + Reset)
-	fmt.Println(Purple + "Hello" + Reset)
-	fmt.Println(Cyan + "Hello" + Reset)
-	fmt.Println(Gray + "Hello" + Reset)
-	fmt.Println(White + "Hello" + Reset)
-	fmt.Println(Red + "H" + Green + "el" + Purple + "lo" + Reset)
-	fmt.Println(Ize(Red, "test"))
-	fmt.Println(Ize(Bold+Red, "bolded"))
+	c.Init()
+	fmt.Println(c.Red + "Hello" + c.Reset)
+	fmt.Println(c.Green + "Hello" + c.Reset)
+	fmt.Println(c.Yellow + "Hello" + c.Reset)
+	fmt.Println(c.Blue + "Hello" + c.Reset)
+	fmt.Println(c.Purple + "Hello" + c.Reset)
+	fmt.Println(c.Cyan + "Hello" + c.Reset)
+	fmt.Println(c.Gray + "Hello" + c.Reset)
+	fmt.Println(c.White + "Hello" + c.Reset)
+	fmt.Println(c.Red + "H" + c.Green + "el" + c.Purple + "lo" + c.Reset)
+	fmt.Println(c.Add(c.Red, "test"))
+	fmt.Println(c.Add(c.Bold+c.Red, "bolded"))
 }
 
 func TestColorize(t *testing.T) {
-	Init()
-	if Ize(Red, "red") != "\033[31mred\033[0m" {
+	c.Init()
+	if c.Add(c.Red, "red") != "\033[31mred\033[0m" {
 		t.Fail()
 	}
-	if Ize(Green, "green") != "\033[32mgreen\033[0m" {
+	if c.Add(c.Green, "green") != "\033[32mgreen\033[0m" {
 		t.Fail()
 	}
-	if Ize(Blue, "blue") != "\033[34mblue\033[0m" {
+	if c.Add(c.Blue, "blue") != "\033[34mblue\033[0m" {
 		t.Fail()
 	}
 }
