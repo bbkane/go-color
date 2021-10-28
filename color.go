@@ -1,5 +1,6 @@
 package color
 
+// These will be set to the proper color codes if Init() returns successfully
 var (
 	Reset  = ""
 	Bold   = ""
@@ -13,6 +14,9 @@ var (
 	White  = ""
 )
 
+var initialized = false
+
+// setColors actually sets the colors - called from Init()
 func setColors() {
 	Reset = "\033[0m"
 	Bold = "\033[1m"
@@ -26,12 +30,8 @@ func setColors() {
 	White = "\033[97m"
 }
 
-// Ize is an alias for the Colorize function
+// Ize wraps a given message in a given color.
+// Init must be called first
 func Ize(color, message string) string {
-	return Colorize(color, message)
-}
-
-// Colorize wraps a given message in a given color.
-func Colorize(color, message string) string {
 	return color + message + Reset
 }

@@ -9,25 +9,27 @@ import (
 func TestOutput(t *testing.T) {
 	Init()
 	fmt.Println(Red + "Hello" + Reset)
-	println(Green + "Hello" + Reset)
-	println(Yellow + "Hello" + Reset)
-	println(Blue + "Hello" + Reset)
-	println(Purple + "Hello" + Reset)
-	println(Cyan + "Hello" + Reset)
-	println(Gray + "Hello" + Reset)
-	println(White + "Hello" + Reset)
-	println(Red + "H" + Green + "el" + Purple + "lo" + Reset)
-	println(Ize(Red, "test"))
+	fmt.Println(Green + "Hello" + Reset)
+	fmt.Println(Yellow + "Hello" + Reset)
+	fmt.Println(Blue + "Hello" + Reset)
+	fmt.Println(Purple + "Hello" + Reset)
+	fmt.Println(Cyan + "Hello" + Reset)
+	fmt.Println(Gray + "Hello" + Reset)
+	fmt.Println(White + "Hello" + Reset)
+	fmt.Println(Red + "H" + Green + "el" + Purple + "lo" + Reset)
+	fmt.Println(Ize(Red, "test"))
+	fmt.Println(Ize(Bold+Red, "bolded"))
 }
 
 func TestColorize(t *testing.T) {
-	if Colorize(Red, "red") != "\033[31mred\033[0m" {
+	Init()
+	if Ize(Red, "red") != "\033[31mred\033[0m" {
 		t.Fail()
 	}
-	if Colorize(Green, "green") != "\033[32mgreen\033[0m" {
+	if Ize(Green, "green") != "\033[32mgreen\033[0m" {
 		t.Fail()
 	}
-	if Colorize(Blue, "blue") != "\033[34mblue\033[0m" {
+	if Ize(Blue, "blue") != "\033[34mblue\033[0m" {
 		t.Fail()
 	}
 }

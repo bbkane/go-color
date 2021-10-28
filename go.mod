@@ -1,3 +1,3 @@
-module github.com/TwiN/go-color
+module github.com/bbkane/go-color
 
 go 1.16
