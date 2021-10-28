@@ -1,10 +1,14 @@
 package color
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 // Clearly not a real test - just a visual reference
 func TestOutput(t *testing.T) {
-	println(Red + "Hello" + Reset)
+	Init()
+	fmt.Println(Red + "Hello" + Reset)
 	println(Green + "Hello" + Reset)
 	println(Yellow + "Hello" + Reset)
 	println(Blue + "Hello" + Reset)
