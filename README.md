@@ -1,21 +1,20 @@
 # go-color
 
-![build](https://github.com/TwiN/go-color/workflows/build/badge.svg?branch=master)
+Forked from [TwiN/go-color](https://github.com/TwiN/go-color). The main change is an explicit `Init()` function that "activates" `Ize()`. This allows calling code to determine whether or not colors are used. To keep the API surface small, I've also removed the `Colorize()` function in favor of `Ize()` Many thanks to @TwiN!!
 
 An extremely lightweight cross-platform package to colorize text in terminals.
 
 This is not meant for maximal compatibility, nor is it meant to handle a plethora of scenarios.
 It will simply wrap a message with the necessary characters, if the OS handles it.
 
-There are many cases in which this would not work, such as the output being redirected to something other 
+There are many cases in which this would not work, such as the output being redirected to something other
 than a terminal (such as a file, i.e. `executable >> file.txt`)
-
 
 ## Usage
 
 ### Function
 
-You can use the `color.Colorize(color, message)` or `color.Ize(color, message)` function 
+You can use the `color.Ize(color, message)` function
 in conjunction with a variable like so:
 ```go
 package main
@@ -23,20 +22,10 @@ package main
 import "github.com/TwiN/go-color"
 
 func main() {
+    Init()
     println(color.Ize(color.Red, "This is red"))
-    // Or if you prefer the longer version
-    println(color.Colorize(color.Red, "This is red"))
 }
 ```
-
-Because I felt reading `color.Ize()` to be more visually pleasant than `color.Colorize()`, 
-I included `Ize()` as an alias for `Colorize()`.
-
-I'm not usually a big fan of having two methods doing the same thing, but since
-this package doesn't have much room for growth (its only purpose is to colorize
-terminal outputs, after all, and there aren't hundreds of ways to go about it),
-I believe it's acceptable to have both.
-
 
 ### Variables only
 
@@ -62,12 +51,12 @@ func main() {
 }
 ```
 
-**NOTE**: If you're going to use this approach, don't forget to prepend your string with `color.Reset`, 
+**NOTE**: If you're going to use this approach, don't forget to prepend your string with `color.Reset`,
 otherwise everything else in your terminal will be that color until the color is reset or overridden.
 
 
 ## Installation
 
 ```
-go get github.com/TwiN/go-color
+go get github.com/bbkane/go-color
 ```

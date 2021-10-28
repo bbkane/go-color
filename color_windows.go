@@ -6,6 +6,9 @@ import (
 )
 
 func Init() error {
+	if initialized {
+		return errors.New("Init() called more than once")
+	}
 	// Try to make ANSI work
 	handle := syscall.Handle(os.Stdout.Fd())
 	kernel32DLL := syscall.NewLazyDLL("kernel32.dll")
@@ -15,5 +18,6 @@ func Init() error {
 		return err
 	}
 	setColors()
+	initialized = true
 	return nil
 }
