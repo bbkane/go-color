@@ -39,6 +39,11 @@ import (
 // }
 
 func TestNewColors(t *testing.T) {
-	color.Enable()
+	err := color.Enable()
+	if err != nil {
+		t.Fatalf("errorr in Enable: %v\n", err)
+	}
 	fmt.Println(color.Add(color.Bold+color.Underline+color.BrightForegroundCyan, "BackgroundCyan"))
+	fmt.Println(color.Add(color.ForegroundRed, "ForegroundRed"))
+
 }
