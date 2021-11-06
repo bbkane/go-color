@@ -7,9 +7,9 @@ import (
 )
 
 // Enable enables color printing.
-// On Windows it calls SetConsoleMode to enable ANSII colors
-// (I think this only works in Win10...).
-// Returns an error if called more than once.
+// It doesn't currently seem to work on Windows
+// and I don't really have access to a Windows machine
+// to fix it.
 func Enable() error {
 	// See https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences?redirectedfrom=MSDN#text-formatting
 	// and
