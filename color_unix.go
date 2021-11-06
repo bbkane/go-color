@@ -2,11 +2,15 @@ package color
 
 import "errors"
 
-func Init() error {
-	if initialized {
-		return errors.New("Init() called more than once")
+// Enable enables color printing.
+// On Windows it calls SetConsoleMode to enable ANSII colors
+// (I think this only works in Win10...).
+// Returns an error if called more than once.
+func Enable() error {
+	if enabled {
+		return errors.New("Enable() called more than once")
 	}
 	setColors()
-	initialized = true
+	enabled = true
 	return nil
 }
