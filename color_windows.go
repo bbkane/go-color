@@ -1,33 +1,36 @@
 package color
 
 import (
-	"errors"
 	"os"
-	"syscall"
+
+	"golang.org/x/sys/windows"
 )
 
-// Enable enables color printing.
-// It doesn't currently seem to work on Windows
-// and I don't really have access to a Windows machine
-// to fix it.
+// Enable enables color printing on Windows and is a no-op
+// on non-Windows platforms (which enable color printing by default)
 func Enable() error {
+	// Code adapted from: https://github.com/jedib0t/go-pretty
+
 	// See https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences?redirectedfrom=MSDN#text-formatting
 	// and
 	// https://docs.microsoft.com/en-us/windows/console/setconsolemode
-	if enabled {
-		return errors.New("Init() called more than once")
-	}
 
-	// Try to make ANSI work
-	handle := syscall.Handle(os.Stdout.Fd())
-	kernel32DLL := syscall.NewLazyDLL("kernel32.dll")
-	setConsoleModeProc := kernel32DLL.NewProc("SetConsoleMode")
-	// If it fails, fallback to no colors
-	if _, _, err := setConsoleModeProc.Call(uintptr(handle), 0x0001|0x0002|0x0004); err != nil && err.Error() != "The operation completed successfully." {
+	handle := windows.Handle(os.Stdout.Fd())
+
+	var stdoutConsoleMode uint32
+	var flags uint32 = windows.ENABLE_PROCESSED_OUTPUT |
+		windows.ENABLE_WRAP_AT_EOL_OUTPUT |
+		windows.ENABLE_VIRTUAL_TERMINAL_PROCESSING
+
+	err := windows.SetConsoleMode(
+		handle,
+		stdoutConsoleMode|flags,
+	)
+	if err != nil {
 		return err
 	}
-
 	setColors()
 	enabled = true
+
 	return nil
 }

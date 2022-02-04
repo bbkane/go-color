@@ -9,7 +9,10 @@ import (
 
 // Run with go test . -v to see the output
 func TestRed(t *testing.T) {
-	color.Enable()
+	err := color.Enable()
+	if err != nil {
+		t.Fatal(err)
+	}
 	fmt.Println(color.Add(color.ForegroundRed, "ForegroundRed"))
 	fmt.Println(color.Add(color.BackgroundRed, "BackgroundRed"))
 	fmt.Println(color.Add(color.BrightForegroundRed, "BrightForegroundRed"))
