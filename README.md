@@ -1,3 +1,7 @@
+# Deprecated
+
+See [bbkane/gocolor](https://github.com/bbkane/gocolor)
+
 # go-color
 
 Forked from [TwiN/go-color](https://github.com/TwiN/go-color). The main change is an explicit `Init()` function that "activates" `Add()`. This allows calling code to determine whether or not colors are used. To keep the API surface small, I've also removed the `Colorize()` function in favor of `Add()` Many thanks to @TwiN!!
